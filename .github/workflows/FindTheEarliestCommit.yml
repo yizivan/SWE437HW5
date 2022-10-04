@@ -1,4 +1,4 @@
-name: Test flink commit 0df9e1e6b85238458a65b14ac31e8fe48f6087f5 Date Wed Oct 13 23:16:33 2021
+name: Test flink commit 955bd585b618e841fe2ff3d3f69bf4f06108aa84 Date Mon Oct 25 09:32:40 2021
 
 on: [push]
 
@@ -25,8 +25,8 @@ jobs:
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-      - name: check out 0df9e1e6b85238458a65b14ac31e8fe48f6087f5
-        run: git checkout 0df9e1e6b85238458a65b14ac31e8fe48f6087f5
+      - name: check out 955bd585b618e841fe2ff3d3f69bf4f06108aa84
+        run: git checkout 955bd585b618e841fe2ff3d3f69bf4f06108aa84
         working-directory: flink
       - name: Set up JDK 11
         uses: actions/setup-java@v3
