@@ -1,4 +1,4 @@
-name: Test flink commit 055c8c808a6c1115ba5dd1526c3769e654850500 Mon Oct 11 09:52:19 2021
+name: Test flink commit 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b Wed Aug 14 15:02:56 2019
 
 on: [push]
 
@@ -8,44 +8,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          architecture: x64
-      - run: git clone https://github.com/apache/flink
-      - run: git clone https://github.com/TestingResearchIllinois/NonDex
       - name: Set up JDK 8
         uses: actions/setup-java@v3
         with:
           java-version: '8'
           distribution: 'adopt'
           architecture: x64
+      - run: git clone https://github.com/apache/flink
+      - run: git clone https://github.com/TestingResearchIllinois/NonDex
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-      - name: check out 055c8c808a6c1115ba5dd1526c3769e654850500
-        run: git checkout 055c8c808a6c1115ba5dd1526c3769e654850500
+      - name: check out 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b
+        run: git checkout 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b
         working-directory: flink
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          architecture: x64
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl flink-libraries/flink-cep -am -e
         working-directory: flink
       - name: run the test to check that it passes
         run: mvn -pl flink-libraries/flink-cep test -Dtest=org.apache.flink.cep.operator.CEPOperatorTest#testCEPOperatorComparatorProcessTime
         working-directory: flink
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          java-version: '8'
-          distribution: 'adopt'
-          architecture: x64
       - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
         run: mvn -pl flink-libraries/flink-cep edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.flink.cep.operator.CEPOperatorTest#testCEPOperatorComparatorProcessTime -DnondexRuns=100 
         working-directory: flink
