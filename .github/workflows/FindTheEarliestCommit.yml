@@ -1,4 +1,4 @@
-name: Test flink commit 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b Wed Aug 14 15:02:56 2019
+name: Test flink commit c5b89494914f162cb7a8db898c9a8fd72f3a1694 Tue Nov 5 12:42:27 2019
 
 on: [push]
 
@@ -19,8 +19,8 @@ jobs:
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-      - name: check out 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b
-        run: git checkout 23c9b5ac50d04d28a34a87c78eb2d3331c06b74b
+      - name: check out c5b89494914f162cb7a8db898c9a8fd72f3a1694
+        run: git checkout c5b89494914f162cb7a8db898c9a8fd72f3a1694
         working-directory: flink
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl flink-libraries/flink-cep -am -e
