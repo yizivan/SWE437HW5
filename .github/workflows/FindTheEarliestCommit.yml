@@ -1,4 +1,4 @@
-name: Test flink commit 0aa7762eff6d9bbb40b968e3f392327fa5baa7eb Wed Jun 26 19:09:59 2019
+name: Test flink commit 84c297069040e40e03651f091d587f90d4cfad3d Jan 1 23:10:11 2019
 
 on: [push]
 
@@ -19,8 +19,8 @@ jobs:
       - name: maven NonDex
         run: mvn install
         working-directory: NonDex
-      - name: check out 0aa7762eff6d9bbb40b968e3f392327fa5baa7eb
-        run: git checkout 0aa7762eff6d9bbb40b968e3f392327fa5baa7eb
+      - name: check out 84c297069040e40e03651f091d587f90d4cfad3d
+        run: git checkout 84c297069040e40e03651f091d587f90d4cfad3d
         working-directory: flink
       - name: compile the module where the test is, and all modules it depends on
         run: mvn test-compile -pl flink-libraries/flink-cep -am -e
@@ -29,5 +29,5 @@ jobs:
         run: mvn -pl flink-libraries/flink-cep test -Dtest=org.apache.flink.cep.operator.CEPOperatorTest#testCEPOperatorComparatorProcessTime
         working-directory: flink
       - name: if the test passes in regular runs, see if it fails with the NonDex tool that reports flaky tests
-        run: mvn -pl flink-libraries/flink-cep edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.flink.cep.operator.CEPOperatorTest#testCEPOperatorComparatorProcessTime -DnondexRuns=100 
+        run: mvn -pl flink-libraries/flink-cep edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.flink.cep.operator.CEPOperatorTest#testCEPOperatorComparatorProcessTime -DnondexRuns=10
         working-directory: flink
